@@ -1,0 +1,114 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-color: linen;
+}
+
+td {
+    border-top-style: solid;
+}
+</style>
+</head>
+<body>
+
+<table style="width:100%">
+  <tr style="font-weight:bold; background-color: orange">
+    <td width="300px">Single-instance version cases</td>
+    <td>Graph Results Screenshot</td>
+    <td>Average Query Time(ms)</td>
+    <td>Average Search Servlet Time(ms)</td>
+    <td>Average JDBC Time(ms)</td>
+    <td>Analysis</td>
+  </tr>
+  <tr>
+    <td>Case 1: HTTP/1 thread</td>
+    <td><img src="https://www.ics.uci.edu/~pzhou2/fabflix-resources/graph_results_caseA1.png" alt="Graph Results Screenshot Case 1" style="width:304px;height:228px;"></td>
+    <td>83</td>
+    <td>9.9740</td>
+    <td>9.7016</td>
+    <td>Executing using only one thread will give us the best performance result as expected. From the difference between the Average Search Servlet time and Average JDBC time(request received - database handling) we can tell that there's no traffic happening in the backend server side. The Average JDBC time(AJTBCt) in this scenario gives us the least time cost as expected since both prepared statement and connection pooling are used. </td>
+  </tr>
+  <tr>
+    <td>Case 2: HTTP/10 threads</td>
+    <td><img src="https://www.ics.uci.edu/~pzhou2/fabflix-resources/graph_results_caseA2.png" alt="Graph Results Screenshot Case 2" style="width:304px;height:228px;"></td>
+    <td>183</td>
+    <td>76.2314</td>
+    <td>12.5915</td>
+    <td>Executing using 10 threads will somehow give us a good enough performance result. From the increase of the difference of the Average Search Servlet time and Average JDBC time(request received - database handling), we can tell that the backend server was busy assigning database connection to the requests from 10 threads. The increase of the difference of the Average Query time and Average Search Servlet time(thread birth - request received) tells us the backend server was also busy handling the requests from 10 threads. The increase of the Average JDBC time could be a result of server being busy offering database services to all of 10 threads. </td>
+  </tr>
+  <tr>
+    <td>Case 3: HTTPS/10 threads</td>
+    <td><img src="https://www.ics.uci.edu/~pzhou2/fabflix-resources/graph_results_caseA3.png" alt="Graph Results Screenshot Case 3" style="width:304px;height:228px;"></td>
+    <td>505</td>
+    <td>63.4019</td>
+    <td>14.6125</td>
+    <td>Executing using 10 threads and https protocol give us the worst performance. One possible reason could be the security check feature of https, which we can see from the hugh increase of difference of Average Query time and Average Search Servlet time, and the increase of the Average JDBC time itself comparing to the ones in case2. The difference of Average Search Servlet time and AJTBCt didn't change much comparing to the one in case2 since the other features besides security check doesn't change between http and https protocals.</td>
+  </tr>
+  <tr>
+    <td>Case 4: HTTP/10 threads/No prepared statements</td>
+    <td><img src="https://www.ics.uci.edu/~pzhou2/fabflix-resources/graph_results_caseA4.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>168</td>
+    <td>73.2106</td>
+    <td>12.9326</td>
+    <td>Executing using 10 threads without using prepared statement gives a fair result. Comparing to the difference of Average Search Servlet time and Average JDBC time in case2, the difference here only changes a little. One possible reason is the little viariation of the execution speed of the backend server CPU. However, Average JDBC time is higher than the one in case2 since prepared statement is disabled here</td>
+  </tr>
+  <tr>
+    <td>Case 5: HTTP/10 threads/No connection pooling</td>
+    <td><img src="https://www.ics.uci.edu/~pzhou2/fabflix-resources/graph_results_caseA5.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>138</td>
+    <td>64.9152</td>
+    <td>12.7837</td>
+    <td>Executing using 10 threads without using connection pooling also gives a fair result. Comparing to the difference of Average Search Servlet time and Average JDBC time in case4, the difference here actually decreased. One possible reason is setting up connection pooling needs more time than the prepared statement since it's dealing with the actual database connection. The Average JDBC time here takes less amount of time than the one in case 4. One possible reason is that we keep sending the exactly same format query to the database, which makes prepared statement achieves its max value. However, the Average JDBC time still takes longer time than the one in case2 since the connecting pool is disabled here. </td>
+  </tr>
+
+</table>
+
+
+<table style="width:100%">
+  <tr style="font-weight:bold; background-color: orange">
+    <td width="300px">Scaled version cases</td>
+    <td>Graph Results Screenshot</td>
+    <td>Average Query Time(ms)</td>
+    <td>Average Search Servlet Time(ms)</td>
+    <td>Average JDBC Time(ms)</td>
+    <td>Analysis</td>
+  </tr>
+  <tr>
+    <td>Case 1: HTTP/1 thread</td>
+    <td><img src="https://www.ics.uci.edu/~pzhou2/fabflix-resources/graph_results_caseB1.png" alt="Graph Results Screenshot Case 1" style="width:304px;height:228px;"></td>
+    <td>102</td>
+    <td>10.3121</td>
+    <td>9.7063</td>``
+    <td>Similar to the result shown in last session, single thread gives the best performance. The Average JDBC time gives us the least time cost as expected since both prepared statement and connection pooling are used. The difference of Average Query time and Average Search Servlet time increased  as expected comparing to the case1 in the single instance case since requsts are handled by either master and slave instances which might require a bit mount of time</td>
+  </tr>
+  <tr>
+    <td>Case 2: HTTP/10 threads</td>
+    <td><img src="https://www.ics.uci.edu/~pzhou2/fabflix-resources/graph_results_caseB2.png" alt="Graph Results Screenshot Case 2" style="width:304px;height:228px;"></td>
+    <td>98</td>4
+    <td>25.3315</td>
+    <td>11.1722</td>
+    <td>Executing using 10 threads in the scaled version cases also gives a good enough performance as we saw from the single-instance case. The difference of Average Search Servlet time and Average JDBC time increased as expected since the backend server is busy handling the database connetions to the each request sent from 10 threads. However, the difference between Average Query time and Average Search Servlet time didn't increase that much comparing to the one from case 2 in single-instance case since there are two instances handling the requests at the same time. Database execution also takes advantage of this dual instances setting since the Average JDBC time is less than the one of same setting but in the single-instance case. One interesting thing that worth to mention here is that we find out the two instances(master and slave) are spliting the workload almost evenly during the our test.</td>
+  </tr>
+  <tr>
+    <td>Case 3: HTTP/10 threads/No prepared statements</td>
+    <td><img src="https://www.ics.uci.edu/~pzhou2/fabflix-resources/graph_results_caseB3.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>107</td>1
+    <td>27.7345</td>
+    <td>12.3621</td>
+    <td>Executing using 10 threads in the scaled version cases without prepared statement gives a fair performance as the one shows in the single-instance version. Since there are two instances using and spliting the work load in the scaled cases, the difference between Average Search Servlet time and Average JDBC time, and Average JDBC time values would be less than the ones under same setting but using the single-instance case. However, the Average JDBC time is still less than the one in case 2 since the prepared statement is not used here. </td>
+  </tr>
+  <tr>
+    <td>Case 4: HTTP/10 threads/No connection pooling</td>
+    <td><img src="https://www.ics.uci.edu/~pzhou2/fabflix-resources/graph_results_caseB4.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>106</td>2
+    <td>26.5202</td>
+    <td>11.4113</td>
+    <td>Executing using 10 threads in the scaled version cases without connection pooling gives a fair performance as the one shows in the single-instance version. However, the reason why Average JDBC time is less than the one in case 2 is the connection pooling is not used here. Comparing the Average JDBC time in case3, the one in this case is smaller. One possible reason is that our query request is in the exactly same format, which means using prepared statement can achieve its best value in this whole test. </td>
+  </tr>
+
+</table>
+
+</body>
+</html>

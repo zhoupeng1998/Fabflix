@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta tags -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Index page">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="author" content="Kaige Wang, Peng Zhou">
+	
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+	   	<!-- title -->
+		<title>ShoppingCart</title>
+	</head>
+	
+	<body>
+		<div id="container" style="width: 1000px; margin: 0 auto">
+			<div style="margin-right:15px" id="username">
+				<a href="index.html">Home</a>&nbsp
+				<a href="javascript:void(0)" onclick="javascript:history.back()">Back</a>
+	        </div>
+	        <br>
+			<div align="center">
+				<a href="index.html">
+					<img src="https://www.ics.uci.edu/~pzhou2/home/emblemmatic-fabflix-logo-1.png" width=150 height=150 align="center"/>
+				</a>
+				<h4>Shopping Cart</h4>
+				<!-- <img src="shopping-cart.png" width=30 height=30> -->
+			</div>
+			<div id="error" align = "center" style.visibility = "hidden"><font color='red'><b>INVALID INPUT!</b></font></div>
+		   	<div style="background-color:pink;text-align=center" id=cart_info>
+			   	<table style="width:100%" id=cart_table>
+					<thead>
+				      	<tr>
+					        <th width=300>Title</th>
+					        <th width=60>Year</th>
+					        <th width=150>Director</th>
+					        <th width=60>Quantity</th>
+					        <th width=60>Price</th>
+				      	</tr>
+				    </thead>
+					<tbody id=cart_table_body></tbody>
+			   	</table>
+		   	</div>
+		    <div id="proceed" style="background-color:pink;text-align=center;margin: 0 auto" style.visibility = "hidden" >
+			   	<a id="proceed_link" href="checkout.html" style.visibility = "hidden"></a>
+			</div> 
+		</div>
+		
+	   	<!-- Load jQuery and Bootstrap JS -->
+	   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	   	<script src="get_parameter.js"></script>
+		<script src="shopping_cart.js"></script>
+	</body>
+</html>

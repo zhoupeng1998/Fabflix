@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta tags -->
+		<meta charset="UTF-8">
+		<meta name="description" content="Index page">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="author" content="Kaige Wang, Peng Zhou">
+	
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<!-- include jquery autocomplete JS  -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.7/jquery.autocomplete.min.js"></script>
+		<link rel="stylesheet" href="autocomplete-style.css">
+	   	<!-- title -->
+		<title>Home - Fabflix</title>
+	</head>
+	
+	<body>
+		<div id="container" style="width: 1000px; margin: 0 auto">
+			<div style="margin-right:15px" id="topbar">
+				<a href="shopping_cart.html">
+					<img src="shopping-cart.png" width=30 height=30 align="right" />
+				</a>
+			</div>
+			<br>
+			<br>
+			<div style="text-align:center">
+			<!-- user button and shopping cart button -->
+				<img src="https://www.ics.uci.edu/~pzhou2/home/emblemmatic-fabflix-logo-1.png" width=150 height=150
+					onclick="location=index.html">
+				<h4>Home<br></h4>
+			</div>
+			<div style="background-color:rgb(255, 208, 190); text-align: center">
+				<br>
+				<p><h5>Search</h5></p>
+				<input type="text" name="name" id="autocomplete" 
+	       			class="autocomplete-searchbox form-control" 
+	       			placeholder="Search Movies"/>
+	       		<script src="autocomplete.js"></script>
+	       		<button onclick="handleNormalSearch($('#autocomplete').val())">Go</button>
+				<p><h5>Browse</h5></p>
+				<p>
+					<script>
+						for (i = 0; i < 26; i++) {
+							document.write("<a href='movie_list.html?method=T&title=", String.fromCharCode(65+i),"&sort=R&order=D&page=0&limit=20'>",String.fromCharCode(65+i), "</a>, ");
+						}
+						document.write("<a href='movie_list.html?method=T&title=0&sort=R&order=D&page=0&limit=20'>#</a><br>");
+						genre_list = new Array("Action","Adult","Adventure","Animation","Biography","Comedy","Crime","Documentary","Drama",
+									"Family","Fantasy","History","Horror","Music","Musical","Mystery","Reality-TV","Romance","Sci-Fi",
+									"Sport","Thriller","War","Western");
+						for (i = 0; i < genre_list.length; i++) {
+							document.write("<a href='movie_list.html?method=G&genre=", genre_list[i], "&sort=R&order=D&page=0&limit=20'>", genre_list[i], "</a>, ");
+						}
+						document.write("<a href='movie_list.html?method=G&genre=Others&sort=T&order=A&page=0&limit=20'>Others</a>");
+					</script>
+				</p>
+				<p><h5>Advanced Search</h5></p>
+				<p>
+					<form method="GET" id="search_form" action="movie_list.html">
+						<input type="hidden" name="method" value="S">
+						<table id="search_form_table" style="margin: 0 auto">
+							<tr>
+								<th><label>Title:    </label></th>
+								<th><input type="text" name="title"></th>
+							</tr>
+							<tr>
+								<th><label>Year:     </label></th>
+								<th><input type="text" name="year"></th>
+							</tr>
+							<tr>
+								<th><label>Director: </label></th>
+								<th><input type="text" name="director"></th>
+							</tr>
+							<tr>
+								<th><label>Star:     </label></th>
+								<th><input type="text" name="star"></th>
+							</tr>
+						</table>		
+						<input type="submit" value="Search">
+						<input type="hidden" name="sort" value="R">
+						<input type="hidden" name="order" value="D">
+						<input type="hidden" name="page" value="0">
+						<input type="hidden" name="limit" value="20">
+					</form>
+				</p>
+		   	</div>
+		</div>
+		
+	   	<!-- Load jQuery and Bootstrap JS -->
+	   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	   	<script type='text/javascript' src="index.js"></script>
+	   	
+
+	</body>
+</html>

@@ -1,0 +1,10 @@
+Browsing feature:
+	Browse by letter A-Z: select IDs that start with letter A-Z
+		SELECT * FROM movies WHERE ... AND title LIKE "A%";
+	Browse by starting digits: select a regular expression start with [0-9] ('#' link of browse feature)
+		SELECT * FROM movies WHERE ... AND movies.title REGEXP '^[0-9]';
+Searching feature:
+	By title: select movie titles that contains substring of user input
+		SELECT * FROM movies WHERE ... AND title LIKE "%<input>%";
+	By star: select stars that contains substring of user input
+		SELECT * FROM stars WHERE ... AND name LIKE "%<input>%";
