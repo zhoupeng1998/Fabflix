@@ -18,7 +18,7 @@
  *          ======`-.____`-.___\_____/___.-`____.-'======
  *                             `=---='
  *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *             The Buddha Blesses Us There's Never�Bugs!
+ *             The Buddha Blesses Us There's Never Bugs!
  */
 
 import java.io.IOException;
