@@ -90,15 +90,15 @@ public class UpdateSecurePassword {
         rs = statement.executeQuery(query);
         System.out.println("encrypting password (this might take another while)");
         while( rs.next() ) {
-        	// get email and plain text password from current table
-        	String email = rs.getString("email");
-        	String password = rs.getString("password");
-        	// encrypt the password using StrongPasswordEncryptor
-        	String eP = passwordEncryptor.encryptPassword(password);
-        	
-        	// generate the update query
-        	String updateQuery = String.format("update employees SET password='%s' where email='%s';", eP, email);
-        	updateQueryList.add(updateQuery);
+            // get email and plain text password from current table
+            String email = rs.getString("email");
+            String password = rs.getString("password");
+            // encrypt the password using StrongPasswordEncryptor
+            String eP = passwordEncryptor.encryptPassword(password);
+            
+            // generate the update query
+            String updateQuery = String.format("update employees SET password='%s' where email='%s';", eP, email);
+            updateQueryList.add(updateQuery);
         }
         rs.close();
       

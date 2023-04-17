@@ -22,15 +22,15 @@
  */
 
 function handleSessionData(resultDataString){
-	// resultData = JSON.parse(resultDataString);
-	console.log("handle Session response");
-	console.log(resultData);
-	console.log(resultData["sessionID"]);
-	//"+resultData["user"]+"
+    // resultData = JSON.parse(resultDataString);
+    console.log("handle Session response");
+    console.log(resultData);
+    console.log(resultData["sessionID"]);
+    //"+resultData["user"]+"
 }
 
 $.ajax({
-	type: "POST",
-	url: "api/index",
-	success: (resultDataString) => handleSessionData(resultDataString)
+    type: "POST",
+    url: "api/index",
+    success: (resultDataString) => handleSessionData(resultDataString)
 });

@@ -33,14 +33,14 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 public class RecaptchaUtils {
-	
-	public static final String SECRET_KEY ="6LdnXZAUAAAAAMBjLP0lzzUy3lvt1Wt9llK-uEFo";
-	public static final String SITE_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
-	
-	public static boolean verify (String recaptchaResponse) throws IOException {
+    
+    public static final String SECRET_KEY ="<Your recaptcha key>";
+    public static final String SITE_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
+    
+    public static boolean verify (String recaptchaResponse) throws IOException {
         if (recaptchaResponse == null || recaptchaResponse.length() == 0) {
-        	System.out.println("recaptcha verification failed: gRecaptchaResponse is null or empty");
-        	return false;
+            System.out.println("recaptcha verification failed: gRecaptchaResponse is null or empty");
+            return false;
         }
         
         URL verifyUrl = new URL(SITE_VERIFY_URL);
@@ -71,22 +71,22 @@ public class RecaptchaUtils {
         System.out.println("Response: " + jsonObject.toString());
         
         if (jsonObject.getBoolean("success")) {
-        	return true;
+            return true;
         } else {
-			System.out.println("recaptcha verification failed: response is " + jsonObject.toString());
-			return false;
-		}
+            System.out.println("recaptcha verification failed: response is " + jsonObject.toString());
+            return false;
+        }
         //throw new Exception("recaptcha verification failed: response is " + jsonObject.toString());
-	}
+    }
 }
 
 /*
 class RecaptchaVerificationException extends Exception {
-	private static final long serialVersionUID = 1L; 
-	public RecaptchaVerificationException () {
-	}
-	public RecaptchaVerificationException (String msg) {
-		super(msg);
-	}
+    private static final long serialVersionUID = 1L; 
+    public RecaptchaVerificationException () {
+    }
+    public RecaptchaVerificationException (String msg) {
+        super(msg);
+    }
 }
 */

@@ -40,7 +40,7 @@ import com.alibaba.fastjson.JSONObject;
 
 @WebServlet(name = "SingleMovieServlet", urlPatterns = "/api/single_movie")
 public class SingleMovieServlet extends HttpServlet {
-	private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 2L;
 
     //@Resource(name = "jdbc/moviedb")
     //private DataSource dataSource;
@@ -50,49 +50,49 @@ public class SingleMovieServlet extends HttpServlet {
      */
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     
-    	response.setContentType("application/json");
+        response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         
         try {
-        	Context initCtx = new InitialContext();
-        	Context envCtx = (Context) initCtx.lookup("java:comp/env");
-        	DataSource ds = (DataSource) envCtx.lookup("jdbc/movieRead");
-        	Connection dbcon = ds.getConnection();
-        	//Connection dbcon = dataSource.getConnection();
-        	String id = request.getParameter("id");
-        	String movieQuery = "SELECT id, title, year, director, rating, numVotes " + 
-        			"FROM movies LEFT JOIN ratings ON ratings.movieId=movies.id " + 
-        			"WHERE movies.id=?;";
-        	System.out.println("Movie query: " + movieQuery);
-        	String starQuery = "SELECT stars.id AS starId, name, birthYear " + 
-        			"FROM movies, stars_in_movies sm, stars " + 
-        			"WHERE movies.id=? AND sm.movieID=movies.id AND stars.id=sm.starId;";
-        	String genreQuery = "SELECT genres.id AS genreId, genres.name " + 
-        			"FROM movies, genres_in_movies gm, genres " + 
-        			"WHERE movies.id=? AND gm.movieID=movies.id AND genres.id=gm.genreId;";
-        	String[] params = {id};
-        	
-        	JSONArray result = new JSONArray();
-        	JSONObject movieResult = new JSONObject();
-        	movieResult.put("MOVIE", SelectQueryHandler.getJSONResultArray(dbcon, null, movieQuery, params));
-        	result.add(movieResult);
-        	movieResult = new JSONObject();
-        	movieResult.put("STARLIST", SelectQueryHandler.getJSONResultArray(dbcon, null, starQuery, params));
-        	result.add(movieResult);
-        	movieResult = new JSONObject();
-        	movieResult.put("GENRELIST", SelectQueryHandler.getJSONResultArray(dbcon, null, genreQuery, params));
-        	result.add(movieResult);
-        	out.write(result.toJSONString());
-        	
+            Context initCtx = new InitialContext();
+            Context envCtx = (Context) initCtx.lookup("java:comp/env");
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/movieRead");
+            Connection dbcon = ds.getConnection();
+            //Connection dbcon = dataSource.getConnection();
+            String id = request.getParameter("id");
+            String movieQuery = "SELECT id, title, year, director, rating, numVotes " + 
+                    "FROM movies LEFT JOIN ratings ON ratings.movieId=movies.id " + 
+                    "WHERE movies.id=?;";
+            System.out.println("Movie query: " + movieQuery);
+            String starQuery = "SELECT stars.id AS starId, name, birthYear " + 
+                    "FROM movies, stars_in_movies sm, stars " + 
+                    "WHERE movies.id=? AND sm.movieID=movies.id AND stars.id=sm.starId;";
+            String genreQuery = "SELECT genres.id AS genreId, genres.name " + 
+                    "FROM movies, genres_in_movies gm, genres " + 
+                    "WHERE movies.id=? AND gm.movieID=movies.id AND genres.id=gm.genreId;";
+            String[] params = {id};
+            
+            JSONArray result = new JSONArray();
+            JSONObject movieResult = new JSONObject();
+            movieResult.put("MOVIE", SelectQueryHandler.getJSONResultArray(dbcon, null, movieQuery, params));
+            result.add(movieResult);
+            movieResult = new JSONObject();
+            movieResult.put("STARLIST", SelectQueryHandler.getJSONResultArray(dbcon, null, starQuery, params));
+            result.add(movieResult);
+            movieResult = new JSONObject();
+            movieResult.put("GENRELIST", SelectQueryHandler.getJSONResultArray(dbcon, null, genreQuery, params));
+            result.add(movieResult);
+            out.write(result.toJSONString());
+            
             response.setStatus(200);
             dbcon.close();
-			
-		} catch (Exception e) {
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("errorMessage", e.getMessage());
-			out.write(jsonObject.toJSONString());
-			response.setStatus(500);
+            
+        } catch (Exception e) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("errorMessage", e.getMessage());
+            out.write(jsonObject.toJSONString());
+            response.setStatus(500);
          //dbcon.close();
-		}
+        }
     }
 }

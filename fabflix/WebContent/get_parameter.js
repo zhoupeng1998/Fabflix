@@ -21,46 +21,46 @@
  *             The Buddha Blesses Us There's Never Bugs!
  */
 
-function addCart( movieID ){
-	$.ajax({
-		type: 'GET',
-		url: 'api/index',
-		data: movieID,
-		success: alert("add movie success")
-	});
+function addCart(movieID) {
+    $.ajax({
+        type: 'GET',
+        url: 'api/index',
+        data: movieID,
+        success: alert("add movie success")
+    });
 }
 
-function updateCart( movieID ){
-	$.ajax({
-		type: 'GET',
-		url: 'api/index',
-		data: movieID,
-		success: alert("update movie success")
-	});
+function updateCart(movieID) {
+    $.ajax({
+        type: 'GET',
+        url: 'api/index',
+        data: movieID,
+        success: alert("update movie success")
+    });
 }
 
-function removeCart( movieID ){
-	$.ajax({
-		type: 'GET',
-		url: 'api/index',
-		data: movieID,
-		success: alert("remove movie success")
-	});
+function removeCart(movieID) {
+    $.ajax({
+        type: 'GET',
+        url: 'api/index',
+        data: movieID,
+        success: alert("remove movie success")
+    });
 }
 
 // adopted from https://blog.csdn.net/ for future use
-function overShow(){
-   var showDiv = document.getElementById('showDiv');
-   showDiv.style.left = event.clientX;
-   showDiv.style.top = event.clientY;
-   showDiv.style.display = 'block';
-   showDiv.innerHTML = 'buy me !!';
+function overShow() {
+    var showDiv = document.getElementById('showDiv');
+    showDiv.style.left = event.clientX;
+    showDiv.style.top = event.clientY;
+    showDiv.style.display = 'block';
+    showDiv.innerHTML = 'buy me !!';
 }
 
-function outHide(){
-	var showDiv = document.getElementById('showDiv');
-	showDiv.style.display = 'none';
-	showDiv.innerHTML = '';
+function outHide() {
+    var showDiv = document.getElementById('showDiv');
+    showDiv.style.display = 'none';
+    showDiv.innerHTML = '';
 }
 
 // adopted from UCI CS122B Winter 2019 Project 1 example
@@ -81,14 +81,13 @@ function getParameterByName(target) {
 }
 
 // adopted from runoob.com
-function getCookie(cname)
-{
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for(var i=0; i<ca.length; i++) 
-  {
-    var c = ca[i].trim();
-    if (c.indexOf(name)==0) return c.substring(name.length,c.length);
-  }
-  return "";
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) 
+    {
+        var c = ca[i].trim();
+        if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+    }
+    return "";
 }

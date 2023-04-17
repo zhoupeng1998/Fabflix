@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<!-- meta tags -->
-		<meta charset="UTF-8">
-		<meta name="description" content="Index page">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="author" content="Kaige Wang, Peng Zhou">
-	
-	    <!-- Bootstrap CSS -->
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	
-	   	<!-- title -->
-		<title>Confirmation</title>
-	</head>
-	
-	<body>
-		<div id="container" style="width: 1000px; margin: 0 auto">
-			<div style="margin-right:15px" id="username">
-				<a href="index.html">Home</a>&nbsp
-				<a href="javascript:void(0)" onclick="javascript:history.back()">Back</a>
-				<a href="shopping_cart.html">
-	            	<img src="shopping-cart.png" width=30 height=30 align="right" />
-	            </a>
-	        </div>
-	        <br>
-			<div align="center">
-				<a href="index.html">
-					<img src="https://www.ics.uci.edu/~pzhou2/home/emblemmatic-fabflix-logo-1.png" width=150 height=150 align="center"/>
-				</a>
-				<h4>Confirmation</h4>
-			</div>
-			<div>Congrats! You've successfully empty your shopping cart!!</div>
-		   	<div style="background-color:green;text-align=center" id=conf_info>
-			   	<table style="width:100%" id=conf_table>
-					<thead>
-				      	<tr>
-					        <th width=60>SaleID</th>
-					        <th width=300>Title</th>
-					        <th width=60>Quantity</th>
-				      	</tr>
-				    </thead>
-					<tbody id=conf_table_body></tbody>
-			   	</table>
-		   	</div>
-		</div>
-		
-	   	<!-- Load jQuery and Bootstrap JS -->
-	   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	   	<script src="get_parameter.js"></script>
-		<script src="confirm.js"></script>
-	</body>
+    <head>
+        <!-- meta tags -->
+        <meta charset="UTF-8">
+        <meta name="description" content="Index page">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Kaige Wang, Peng Zhou">
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+           <!-- title -->
+        <title>Confirmation</title>
+    </head>
+    
+    <body>
+        <div id="container" style="width: 1000px; margin: 0 auto">
+            <div style="margin-right:15px" id="username">
+                <a href="index.html">Home</a>&nbsp
+                <a href="javascript:void(0)" onclick="javascript:history.back()">Back</a>
+                <a href="shopping_cart.html">
+                    <img src="shopping-cart.png" width=30 height=30 align="right" />
+                </a>
+            </div>
+            <br>
+            <div align="center">
+                <a href="index.html">
+                    <img src="https://www.ics.uci.edu/~pzhou2/home/emblemmatic-fabflix-logo-1.png" width=150 height=150 align="center"/>
+                </a>
+                <h4>Confirmation</h4>
+            </div>
+            <div>Congrats! You've successfully empty your shopping cart!!</div>
+               <div style="background-color:green;text-align=center" id=conf_info>
+                   <table style="width:100%" id=conf_table>
+                    <thead>
+                          <tr>
+                            <th width=60>SaleID</th>
+                            <th width=300>Title</th>
+                            <th width=60>Quantity</th>
+                          </tr>
+                    </thead>
+                    <tbody id=conf_table_body></tbody>
+                   </table>
+               </div>
+        </div>
+        
+        <!-- Load jQuery and Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="get_parameter.js"></script>
+        <script src="confirm.js"></script>
+    </body>
 </html>

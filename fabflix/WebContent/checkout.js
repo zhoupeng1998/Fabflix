@@ -22,14 +22,14 @@
  */
 
 function handleCheckoutResult (resultData) {
-	console.log(resultData);
+    console.log(resultData);
     //resultDataJSON = JSON.parse(resultDataString);
     console.log("Handling Checkout Response...");
     console.log(resultData["status"]);
     if (resultData["message"] === "success") {
         window.location.replace("confirm.html");
     } else {
-    	console.log("Checkout failed!");
+        console.log("Checkout failed!");
         window.alert("Checkout failed! Check your Credit Card information.");
     }
 }

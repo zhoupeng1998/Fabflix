@@ -22,7 +22,7 @@
  */
 
 function handleLoginResult (resultDataString) {
-	// get POST result from database
+    // get POST result from database
     resultDataJSON = JSON.parse(resultDataString);
     console.log("Handling Login Response...");
     console.log(resultDataJSON["status"]);

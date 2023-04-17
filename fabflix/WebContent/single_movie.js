@@ -52,9 +52,9 @@ function handleMovieResult( resultData ){
 // set return link to movie list page
 //let last_serach = getCookie("last_search");
 if (getCookie("last_search") != null || getCookie("last_search") != "") {
-	$("#back_link").attr("href",getCookie("last_search"));
+    $("#back_link").attr("href",getCookie("last_search"));
 } else {
-	$("#back_link").text("");
+    $("#back_link").text("");
 }
 
 let movieId = getParameterByName('id');

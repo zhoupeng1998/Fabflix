@@ -40,8 +40,8 @@ import com.alibaba.fastjson.JSONObject;
 
 @WebServlet(name = "SingleStarServlet", urlPatterns = "/api/single_star")
 public class SingleStarServlet extends HttpServlet {
-	private static final long serialVersionUID = 3L;
-	
+    private static final long serialVersionUID = 3L;
+    
     //@Resource(name = "jdbc/moviedb")
     //private DataSource dataSource;
     
@@ -49,41 +49,41 @@ public class SingleStarServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
-    	response.setContentType("application/json");
+        
+        response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         
         try {
-        	Context initCtx = new InitialContext();
-        	Context envCtx = (Context) initCtx.lookup("java:comp/env");
-        	DataSource ds = (DataSource) envCtx.lookup("jdbc/movieRead");
-        	Connection dbcon = ds.getConnection();
-        	//Connection dbcon = dataSource.getConnection();
-        	String id = request.getParameter("id");
-        	String starQuery = "SELECT * from stars WHERE stars.id=? ;";
-        	String movieQuery = "SELECT movies.* FROM stars, stars_in_movies sm, movies " + 
-        			"WHERE stars.id=sm.starId AND sm.movieId=movies.id " + 
-        			"AND stars.id=?;";
-        	String[] params = {id};
-        	
-        	JSONArray result = new JSONArray();
-        	JSONObject starResult = new JSONObject();
-        	starResult.put("STAR", SelectQueryHandler.getJSONResultArray(dbcon, null, starQuery, params));
-        	result.add(starResult);
-        	starResult = new JSONObject();
-        	starResult.put("MOVIELIST", SelectQueryHandler.getJSONResultArray(dbcon, null, movieQuery, params));
-        	result.add(starResult);
-        	out.write(result.toJSONString());
-        	
+            Context initCtx = new InitialContext();
+            Context envCtx = (Context) initCtx.lookup("java:comp/env");
+            DataSource ds = (DataSource) envCtx.lookup("jdbc/movieRead");
+            Connection dbcon = ds.getConnection();
+            //Connection dbcon = dataSource.getConnection();
+            String id = request.getParameter("id");
+            String starQuery = "SELECT * from stars WHERE stars.id=? ;";
+            String movieQuery = "SELECT movies.* FROM stars, stars_in_movies sm, movies " + 
+                    "WHERE stars.id=sm.starId AND sm.movieId=movies.id " + 
+                    "AND stars.id=?;";
+            String[] params = {id};
+            
+            JSONArray result = new JSONArray();
+            JSONObject starResult = new JSONObject();
+            starResult.put("STAR", SelectQueryHandler.getJSONResultArray(dbcon, null, starQuery, params));
+            result.add(starResult);
+            starResult = new JSONObject();
+            starResult.put("MOVIELIST", SelectQueryHandler.getJSONResultArray(dbcon, null, movieQuery, params));
+            result.add(starResult);
+            out.write(result.toJSONString());
+            
             response.setStatus(200);
             dbcon.close();
             
-		} catch (Exception e) {
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("errorMessage", e.getMessage());
-			out.write(jsonObject.toJSONString());
+        } catch (Exception e) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("errorMessage", e.getMessage());
+            out.write(jsonObject.toJSONString());
          //dbcon.close();
-			response.setStatus(500);
-		}
+            response.setStatus(500);
+        }
     }
 }
